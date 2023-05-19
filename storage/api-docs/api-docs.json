@@ -1,0 +1,26 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CMS API Documentation v1",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://api.localtest.me/api/",
+            "description": "CMS Swagger API V1 server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "operationId": "5e18125665dc7456264370e08bd9a09e",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,4160 @@
+{
+	"info": {
+		"_postman_id": "aee3f965-bd40-41ef-be81-9a24541175ee",
+		"name": "Quem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7350575"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@testing.com\",\r\n    \"password\":\"clave123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"deivis@hotmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/refresh-token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"item": [
+				{
+					"name": "List Permissions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/permissions?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"permissions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "medic",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Permission By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/permissions/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"medication.delete\",\r\n    \"guard_name\": \"api\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/permissions/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Permission",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"medication.update\",\r\n    \"guard_name\": \"api\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/permissions/118",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								"118"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Permission",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/permissions/118",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								"118"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "List Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/roles?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "adm",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rol By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/roles/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testing\",\r\n    \"guard_name\": \"api\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/roles/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rol",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testing update\",\r\n    \"guard_name\": \"api\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/roles/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rol",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/roles/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Permission to Rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permissions\": [\r\n        \"users.index\",\r\n        \"users.update\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/roles/assign-permissions/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"assign-permissions",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "admin",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"emaniger\",\r\n    \"email\": \"test3@test.com\",\r\n    \"password\": \"12345678\",\r\n    \"first_name\": \"testing\",\r\n    \"roles\": [\r\n        \"Admin\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"emaniger5\",\r\n    \"email\": \"test@test.com\",\r\n    \"first_name\": \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/update-password/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"update-password",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asign Role to User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roles\": [\r\n        \"Admin\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/assign-role/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"assign-role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Med Plates",
+			"item": [
+				{
+					"name": "List Med Plates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/med-plates?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "1027-12-3",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Med Plate By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/med-plates/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Med Plate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"1027-12-999\",\r\n    \"description\": \"testing store\",\r\n    \"price\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/med-plates",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Machine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"med_plate_id\": 1,\r\n    \"machine_id\": 2,\r\n    \"posx\": 1,\r\n    \"posy\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/med-plates/assign-machine",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates",
+								"assign-machine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Med Plate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"3452-12-305\",\r\n    \"description\": \"Versi-Fill\",\r\n    \"price\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/med-plates/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Med Plate",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/med-plates/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Med Plate Machine",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/med-plates/delete-med-plate-machine/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"med-plates",
+								"delete-med-plate-machine",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Adapters",
+			"item": [
+				{
+					"name": "List Adapters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/adapters?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "1027",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Adapter By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/adapters/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Adapter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"1027-12-209\",\r\n    \"description\": \"testing store\",\r\n    \"price\": 20,\r\n    \"machines\": [1,3,5]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/adapters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Adapter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"1027-12-209\",\r\n    \"description\": \"testing\",\r\n    \"price\": 20,\r\n    \"machines\": [1,3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/adapters/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Adapter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/adapters/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Adapter Machine",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/adapters/delete-adapter-machine/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"adapters",
+								"delete-adapter-machine",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Canister Pricing",
+			"item": [
+				{
+					"name": "Get Canister Pricing",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/canister-pricing",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"canister-pricing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Canister Pricing",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"purchase_new_p\": \"3.1\",\r\n    \"purchase_exchangue_p\": \"4.4\",\r\n    \"exchangue_p\": \"7.7\",\r\n    \"other_p\": \"5.33\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/canister-pricing/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"canister-pricing",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "List Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/customers?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "dir",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "number",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/customers/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store 2\",\r\n    \"track_canisters\": 1,\r\n    \"code\": \"ABCD\",\r\n    \"address\": \"1454 Madison Ave. West\",\r\n    \"city\": \"Montgomery\",\r\n    \"state_id\": 2,\r\n    \"zip_code\": \"11\",\r\n    \"route_zip_code\": \"22\",\r\n    \"distributor_id\": 3,\r\n    \"notify_freq\": 7,\r\n    \"email_contract\": \"test@test.com\",\r\n    \"canister_program\": 1,\r\n    \"exchange_amt_id\": 2,\r\n    \"carousels_purchased\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing updated\",\r\n    \"track_canisters\": 1,\r\n    \"code\": \"BCSA\",\r\n    \"address\": \"Sacramento\",\r\n    \"city\": \"Sacramento\",\r\n    \"state_id\": 7,\r\n    \"zip_code\": \"342\",\r\n    \"route_zip_code\": \"676\",\r\n    \"distributor_id\": 4,\r\n    \"notify_freq\": 14,\r\n    \"email_contract\": \"customer@test.com\",\r\n    \"canister_program\": 0,\r\n    \"exchange_amt_id\": 4,\r\n    \"carousels_purchased\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/customers/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Customer Serial Number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"7\",\r\n    \"codigo\": \"1234\",\r\n    \"part_group_id\": \"1\",\r\n    \"install_date\": \"2022/11/17\",\r\n    \"machine_id\": \"1\",\r\n    \"renewal_freq\": \"M\",\r\n    \"renewal_term_month\": \"5\",\r\n    \"service_exp_date\": \"2023/04/17\",\r\n    \"invoice_amt\": \"94\",\r\n    \"limit_term\": \"M\",\r\n    \"canister_exp_date\": \"2024/11/17\",\r\n    \"purchase_limit\": \"1\",\r\n    \"exchange_limit\": \"1\",\r\n    \"other_limit\": \"1\",\r\n    \"other_exchange_limit\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers/store-serial-number",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"store-serial-number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Serial Number",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"7\",\r\n    \"codigo\": \"112233\",\r\n    \"part_group_id\": \"2\",\r\n    \"install_date\": \"2022/11/11\",\r\n    \"machine_id\": \"1\",\r\n    \"renewal_freq\": \"Y\",\r\n    \"renewal_term_month\": \"7\",\r\n    \"service_exp_date\": \"2023/06/11\",\r\n    \"invoice_amt\": \"59.15\",\r\n    \"limit_term\": \"Y\",\r\n    \"canister_exp_date\": \"2024/11/11\",\r\n    \"purchase_limit\": \"3\",\r\n    \"exchange_limit\": \"4\",\r\n    \"other_limit\": \"5\",\r\n    \"other_exchange_limit\": \"6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers/update-serial-number/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"update-serial-number",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer Serial Number",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/customers/delete-serial-number/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"delete-serial-number",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Customer Serial Number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"7\",\r\n    \"name\": \"Mr Smith\",\r\n    \"title\": \"test\",\r\n    \"phone\": \"800-820-8210\",\r\n    \"fax\": \"800-820-8210\",\r\n    \"email\": \"test@test.com\",\r\n    \"email_notifications\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers/store-contacts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"store-contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Contact",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"7\",\r\n    \"name\": \"Mrs Johnson\",\r\n    \"title\": \"test update\",\r\n    \"phone\": \"800-450-3120\",\r\n    \"fax\": \"800-451-9768\",\r\n    \"email\": \"update@test.com\",\r\n    \"email_notifications\": \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/customers/update-contact/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"update-contact",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer Contact",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/customers/delete-contact/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"delete-contact",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Machines",
+			"item": [
+				{
+					"name": "List Machines",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/machines?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"machines"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "cmd",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Machine By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/machines/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"machines",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Machine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/machines",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"machines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Machine",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/machines/23",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"machines",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Machine",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/machines/23",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"machines",
+								"23"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "States",
+			"item": [
+				{
+					"name": "List States",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/states?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"states"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "az",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get State By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/states/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"states",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store State",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"FK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/states",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update State",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"CA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/states/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"states",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete State",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/states/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"states",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exchange Amts",
+			"item": [
+				{
+					"name": "List Exchange Amt",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/exchange-amt?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"exchange-amt"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "24",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Exchange Amt By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/exchange-amt/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"exchange-amt",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Exchange Amt",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store 2\",\r\n    \"cant\": \"12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/exchange-amt",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"exchange-amt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Exchange Amt",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing updated\",\r\n    \"cant\": \"30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/exchange-amt/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"exchange-amt",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Exchange Amt",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/exchange-amt/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"exchange-amt",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Distributors",
+			"item": [
+				{
+					"name": "List Distributor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/distributors?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"distributors"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "dist",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Distributor By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/distributors/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"distributors",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Distributor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/distributors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"distributors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Distributor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/distributors/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"distributors",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Distributor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/distributors/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"distributors",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Packing Type",
+			"item": [
+				{
+					"name": "List Package Types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "disp",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Packing Type By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Packing Type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"testing store 2\",\r\n    \"description\": \"testing store 2\",\r\n    \"manufactures\": [1, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/packing-type",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Packing Type",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"testing update 2\",\r\n    \"description\": \"testing\",\r\n    \"manufactures\": [1, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/packing-type/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Packing Type",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Packing Type Manufactures",
+			"item": [
+				{
+					"name": "List Packing Type Manufactures",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type-manufactures?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type-manufactures"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "art",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Packing Type Manufactures By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type-manufactures/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type-manufactures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Packing Type Manufacture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/packing-type-manufactures",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type-manufactures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Packing Type Manufacture",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"packing updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/packing-type-manufactures/18",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type-manufactures",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Packing Type Manufacture",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/packing-type-manufactures/18",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"packing-type-manufactures",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paddles",
+			"item": [
+				{
+					"name": "List Paddles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paddle By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Paddle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"4\",\r\n    \"description\": \"testing store\",\r\n    \"price\": 20,\r\n    \"dwell_time\": 3,\r\n    \"pockets_b_split\": 5,\r\n    \"total_pockets\": 5,\r\n    \"paddle_x\": 4,\r\n    \"paddle_y\": 3,\r\n    \"med_plate_x\": 8,\r\n    \"med_plate_y\": 2,\r\n    \"pockets_split\": 1,\r\n    \"paddle_review\": 0,\r\n    \"paddle_hand_pack\": 0,\r\n    \"packing_type\": [2, 3],\r\n    \"med_plate\": [1,2],\r\n    \"adapter\": [1,6]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/paddles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Pocket Coord",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paddle_id\": 5,\r\n    \"coord_x\": 3,\r\n    \"coord_y\": 1,\r\n    \"number\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/paddles/assign-paddle-pocket-coord",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"assign-paddle-pocket-coord"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Paddle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"4\",\r\n    \"description\": \"testing\",\r\n    \"price\": 20,\r\n    \"dwell_time\": 3,\r\n    \"pockets_b_split\": 5,\r\n    \"total_pockets\": 5,\r\n    \"paddle_x\": 4,\r\n    \"paddle_y\": 3,\r\n    \"med_plate_x\": 8,\r\n    \"med_plate_y\": 2,\r\n    \"pockets_split\": 1,\r\n    \"paddle_review\": 0,\r\n    \"paddle_hand_pack\": 0,\r\n    \"packing_type\": [2],\r\n    \"med_plate\": [1,2],\r\n    \"adapter\": [1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/paddles/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Paddle",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pocket Coord",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/delete-paddle-pocket-coord/13",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"delete-paddle-pocket-coord",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Paddle Packing Type",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/delete-paddle-packing-type/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"delete-paddle-packing-type",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Paddle Med Plate",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/delete-paddle-med-plate/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"delete-paddle-med-plate",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Paddle Adapter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/paddles/delete-paddle-adapter/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"paddles",
+								"delete-paddle-adapter",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part Group",
+			"item": [
+				{
+					"name": "List Part Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-groups?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-groups"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "pas",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Part Group By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-groups/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-groups",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Part Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-groups",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Part Group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-groups/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-groups",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Part Group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-groups/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-groups",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part Title",
+			"item": [
+				{
+					"name": "List Part Titles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-titles?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-titles"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "vein",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Part Title By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-titles/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-titles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Part Title",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing store\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-titles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-titles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Part Title",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-titles/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-titles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Part Title",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-titles/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-titles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part Number",
+			"item": [
+				{
+					"name": "List Part Numbers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-numbers?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-numbers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "number of records to display per page - Default: 10",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "3149-01-00",
+									"description": "term for search in table",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "id",
+									"description": "field to sort",
+									"disabled": true
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "asc | desc - Default: asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Part Number By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-numbers/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-numbers",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Part Number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"part_group_id\": 1,\r\n    \"part_title_id\": 10,\r\n    \"number\": \"test-001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-numbers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-numbers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Part Number",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"part_group_id\": 1,\r\n    \"part_title_id\": 10,\r\n    \"number\": \"test-011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/part-numbers/33",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-numbers",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Part Number",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/part-numbers/33",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"part-numbers",
+								"33"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medications",
+			"item": [
+				{
+					"name": "List Medications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/medications?page=1&per_page=10&sort_by=id&sort_direction=asc&search=Medicament",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"medications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "sort_by",
+									"value": "id"
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "Medicament"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medication By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/medications/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"medications",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Medication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": " testing",
+									"type": "text"
+								},
+								{
+									"key": "manufacture_id",
+									"value": " 2",
+									"type": "text"
+								},
+								{
+									"key": "distributor_id",
+									"value": " 2",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": " 7",
+									"type": "text"
+								},
+								{
+									"key": "strength",
+									"value": " 10mg",
+									"type": "text"
+								},
+								{
+									"key": "shape_id",
+									"value": " 3",
+									"type": "text"
+								},
+								{
+									"key": "bulk_ndc",
+									"value": " 0002411730",
+									"type": "text"
+								},
+								{
+									"key": "hippa_ndc",
+									"value": " 000024117",
+									"type": "text"
+								},
+								{
+									"key": "packaging_code",
+									"value": " 30",
+									"type": "text"
+								},
+								{
+									"key": "under_review",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "xdim",
+									"value": " 0.4040",
+									"type": "text"
+								},
+								{
+									"key": "ydim",
+									"value": " 0.2000",
+									"type": "text"
+								},
+								{
+									"key": "zdim",
+									"value": " 0.4040",
+									"type": "text"
+								},
+								{
+									"key": "cc",
+									"value": " xxx",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": " 0.27",
+									"type": "text"
+								},
+								{
+									"key": "special",
+									"value": " INS",
+									"type": "text"
+								},
+								{
+									"key": "prg_status",
+									"value": " UR",
+									"type": "text"
+								},
+								{
+									"key": "count",
+									"value": " 8",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": " Note test",
+									"type": "text"
+								},
+								{
+									"key": "machx",
+									"value": " 0.4300",
+									"type": "text"
+								},
+								{
+									"key": "machy",
+									"value": " 0.2100",
+									"type": "text"
+								},
+								{
+									"key": "machz",
+									"value": " 0.4050",
+									"type": "text"
+								},
+								{
+									"key": "vial_size",
+									"value": " xxx",
+									"type": "text"
+								},
+								{
+									"key": "new",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "img_front",
+									"type": "file",
+									"src": "-5J0m3XHB/85251525_2814776845282195_5104446327807279104_n.jpg"
+								},
+								{
+									"key": "img_back",
+									"type": "file",
+									"src": "AEKyiz3pJ/1628307541950.jpeg"
+								},
+								{
+									"key": "img_edge",
+									"type": "file",
+									"src": "M_t73HJqY/factura.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/medications",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"medications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Medication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " prueba",
+									"type": "text"
+								},
+								{
+									"key": "manufacture_id",
+									"value": " 2",
+									"type": "text"
+								},
+								{
+									"key": "distributor_id",
+									"value": " 2",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": " 7",
+									"type": "text"
+								},
+								{
+									"key": "strength",
+									"value": " 10mg",
+									"type": "text"
+								},
+								{
+									"key": "shape_id",
+									"value": " 3",
+									"type": "text"
+								},
+								{
+									"key": "bulk_ndc",
+									"value": " 0002411730",
+									"type": "text"
+								},
+								{
+									"key": "hippa_ndc",
+									"value": " 000024117",
+									"type": "text"
+								},
+								{
+									"key": "packaging_code",
+									"value": " 30",
+									"type": "text"
+								},
+								{
+									"key": "under_review",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "xdim",
+									"value": " 0.4040",
+									"type": "text"
+								},
+								{
+									"key": "ydim",
+									"value": " 0.2000",
+									"type": "text"
+								},
+								{
+									"key": "zdim",
+									"value": " 0.4040",
+									"type": "text"
+								},
+								{
+									"key": "cc",
+									"value": " xxx",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": " 0.27",
+									"type": "text"
+								},
+								{
+									"key": "special",
+									"value": " INS",
+									"type": "text"
+								},
+								{
+									"key": "prg_status",
+									"value": " UR",
+									"type": "text"
+								},
+								{
+									"key": "count",
+									"value": " 8",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": " Note test",
+									"type": "text"
+								},
+								{
+									"key": "machx",
+									"value": " 0.4300",
+									"type": "text"
+								},
+								{
+									"key": "machy",
+									"value": " 0.2100",
+									"type": "text"
+								},
+								{
+									"key": "machz",
+									"value": " 0.4050",
+									"type": "text"
+								},
+								{
+									"key": "vial_size",
+									"value": " xxx",
+									"type": "text"
+								},
+								{
+									"key": "new",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "img_front",
+									"type": "file",
+									"src": "-5J0m3XHB/85251525_2814776845282195_5104446327807279104_n.jpg"
+								},
+								{
+									"key": "img_back",
+									"type": "file",
+									"src": "AEKyiz3pJ/1628307541950.jpeg",
+									"disabled": true
+								},
+								{
+									"key": "img_edge",
+									"type": "file",
+									"src": "M_t73HJqY/factura.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/medications/32",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"medications",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Medication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/medications/32",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"medications",
+								"32"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shapes",
+			"item": [
+				{
+					"name": "List Shape",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/shapes?page=1&per_page=10&sort_by=id&sort_direction=asc",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"shapes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "sort_by",
+									"value": "id"
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "Medicament",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shape By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/shapes/28",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"shapes",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Shape",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": " testing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/shapes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"shapes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shape",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Testingupdate\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/shapes/28",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"shapes",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Shapes",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_cms}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/shapes/28",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"shapes",
+								"28"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
