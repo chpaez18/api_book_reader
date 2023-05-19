@@ -1,1 +1,1 @@
-web: chmod -R 777 storage
+web: chmod -R 777 storage 
