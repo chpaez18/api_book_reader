@@ -12,7 +12,7 @@ trait ApiResponse
 {
 	protected function successResponse($data, $code, $collection = false)
 	{
-		
+
 		if ($collection) { 
 			return response()->json([
 				'responseCode' => $code, 
