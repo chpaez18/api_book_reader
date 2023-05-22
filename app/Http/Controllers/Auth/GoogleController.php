@@ -25,7 +25,7 @@ class GoogleController extends Controller
     public function loginCallback(Request $request)
     {
         // Intercambia el código de autorización por un token de acceso
-        $response = Socialite::with('google')->getAccessTokenResponse($request->code);
+        $response = Socialite::with('google')->getAccessTokenResponse($request->code);dd($response);
         $accessToken = $response['access_token'];
         $refreshToken = $response['refresh_token'];
 
