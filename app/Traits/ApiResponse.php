@@ -31,18 +31,6 @@ trait ApiResponse
 	protected function errorResponse($message, $code, $exception = false)
 	{
 
-		if(env('LOG_ERRORS')){
-
-			LogError::create([
-				'env' => env('APP_ENV'),
-                'user_id' => auth()->user()->id ?? null,
-                'error' => $exception->getMessage(),
-                'ip' =>   request()->ip(),
-				'browser' => request()->header('User-Agent') ?? 'ENDPOINT',
-                'trace' =>  $exception->getTraceAsString()
-			]);
-		}
-
 		return response()->json([
 			'responseCode' => $code,
             'data' => $message, 
