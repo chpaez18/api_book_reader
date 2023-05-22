@@ -1,0 +1,1 @@
+web: chmod 770 storage/*
