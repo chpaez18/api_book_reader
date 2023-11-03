@@ -62,7 +62,7 @@ class GoogleController extends Controller
 
         }
 
-        return redirect('https://extraordinary-basbousa-5545f0.netlify.app/dashboard?token=' . $token);
+        return redirect(env('APP_FRONT_URL').'/dashboard?token=' . $token);
         /* return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',

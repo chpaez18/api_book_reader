@@ -5,12 +5,13 @@ namespace App\Services\Drive;
 use App\Models\Photo;
 use App\Models\UserPhoto;
 
+use App\Models\UserQuote;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 use Illuminate\Support\Facades\File;
-
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -180,8 +181,21 @@ class DriveService
     function deleteFile($id){
 
         $photo = Photo::where('google_drive_id', $id)->first();
+        $userId = auth('api')->user()->id;
         if ($photo) {
-            $userPhoto = UserPhoto::where('photo_id', $photo->id)->first()->delete();
+
+            $userQuote = UserQuote::where('photo_id', $photo->id)->where('user_id', $userId)->first();
+
+            if ($userQuote) {
+                $userQuote->delete();
+            }
+
+            $userPhoto = UserPhoto::where('photo_id', $photo->id)->first();
+
+            if ($userPhoto) {
+                $userPhoto->delete();
+            }
+
             $photo->delete();
         }
 

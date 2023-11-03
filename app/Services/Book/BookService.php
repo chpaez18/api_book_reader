@@ -38,6 +38,7 @@ class BookService
                 $query->select('photos.id', 'photos.google_drive_id');
             }])
             ->get();
+
             $quotesCompleted = $userBookInfo->where('is_completed', 1)->count();
             $quotesWrited = $userBookInfo->where('quote_description', '<>', null)->count();
             $imagesUploaded = $userBookInfo->where('photo_id', '<>', null)->count();
