@@ -1,0 +1,467 @@
+{
+	"info": {
+		"_postman_id": "6bee1c73-a062-4ce4-af22-3e48d0abcdb2",
+		"name": "Book Reader",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12813837"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@testing.com\",\r\n    \"password\":\"clave123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get url google",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/auth/get-google-login-url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"auth",
+								"get-google-login-url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzhjZGMwMWI5YjhjMzgyNjI2ODVjMmMyMjdmMDE1ZGNkMzY3YjlmYTMxNWRhOGRiNmRmZjY3OWVlNDU0ODZjYzZiYTUwNTlkYmY2NjA3YzQiLCJpYXQiOjE2ODM3MTk4ODMuNTcwMTY1LCJuYmYiOjE2ODM3MTk4ODMuNTcwMTY4LCJleHAiOjE3MTUzNDIyODMuNTYzNjEzLCJzdWIiOiIxMyIsInNjb3BlcyI6W119.IBkGuPUAX1MgS6IcL86Sjx3zqW_BwasS1jILQmt9hM_fVkAh4FCX-nnl-hadhe_VfbSx86vqehAtcFI9XzfB9vzl75_Q1AoSFYmz8FPJI-EkhMgp0DX0Yee5hhjBpp2l25xGgxH6qdpca_BJ4zAl_4bVeRiVzHdN2mwU6ILzzjHOKaD-NLouItHK0eahGACsWgJOYK42zRiPbVehNcqcOPleLfU81cnBCpPbVHa6XQiYCvinwopm1pwM-ZOnlt0vHLN-f4GCI5VtodXUFeYafqkQhiqlf14XufWpIoCWSUtmOFeFImGQU2GGi0wLMCuq1wGvB46hWoIcreisCr91IbqTfhRoDwVszx_uWSESSHqAsuyGwC0WR9DhnudmnE6AECJaC76nIvPez4a-_Ncy94l4GjjEmOids3HigwHBeO-bvu6UKUd28dwk1Me-Tt0Y8-nQfgVzhudzTtxFJwGrz3nkfVi-xkGogNQgFYsR6eCb82lSWrdWL7lQlYshXCwrOtqCjetxMnjFpXDjFb-j4yx9qCyyr51hNasnJlGpfxFOjjCBcsUmB-6WRUp4f8VW9tnJB7eu6d9ai3-p8wVlKuiWqS_fc2ZukspmCy_ynANAvGssoCm8O0cRxVvALWOkfwO5UFyFzue0MFJCP5C1DSZvz8J5JlqBllaAdK3wgns",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODU4Y2E2ODczMDM2NmYzOWRhM2JmODc0MzExYzgzZjZlZjQxNzkzZGRiN2YwZmRhY2ViNDgzMzdkMzU1OWE2OTBiYzdkMDBlMjdkZjAwYjIiLCJpYXQiOjE2ODM4MTk0OTAuOTEzMzY1LCJuYmYiOjE2ODM4MTk0OTAuOTEzMzcsImV4cCI6MTcxNTQ0MTg5MC44OTczNjksInN1YiI6IjIzIiwic2NvcGVzIjpbXX0.u7eACx_9zDH_AFL_54Jdf8HWhj8LwCpjl25uoVgiRDVUXRSKPU-TcSew0zlvsfcmnwXb0orMusbZVaQTN0DNmsLLvI7MJemJXAr4zUrHVFfCWAaeEY2FzoywcfKzxZ3RseuFXsZLIW4zRBIkuPQBbb1P5BiKBbwLr6EiAv6vHwfxaywfM-IkWXEXnW2sdoCLwlMAfRSTm_CHsCt0dKx7_TLwhXfKNEuhft61OHIqHMOh6FSNDXbtbp9UHaECKzIPwopdmFexv7coFGkZrzEcaZHOBTvwMJDp1P72tXYYNvcRoUA0KRoYoD5pwM5HJ90TcHWROjLxuch0K_QX1JKJNXowsKaXXGV9N9VMRX_uUx3D776wJLYwbuWErbTUPU7RKqr5iyEdLLoJAxAR70X18jNNYUvl1tw2FoqxaSxGPvpsdYINta2ubew2xAtwrahxVZSwTvfKXfkHCY46HILME2VzHP7dcDzL_uNKjHoyKd-XkwODIzLLvRvGISd7qCxYPnVo3pZa6atzRfFC65uR3qfewuwFDJIXyfJOrpSfYsjfHAREve1AkXQVkIHenD2e6GgXtPdTCKfwVFkWnDruSZc7tV5QnTHBL6eL0v0wJBN8od6dekicJt9c1DZeHlL5CbARsY1qDnju-Os6gtnkkm-lpw7gjpmMDGMADTYxYUo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"deivis@hotmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/auth/google/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"auth",
+								"google",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/users/get-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"users",
+								"get-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Photos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/users/get-photos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"users",
+								"get-photos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google Drive",
+			"item": [
+				{
+					"name": "Get Folders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/drive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"drive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Files in Folder",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/drive/get-folder-files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"drive",
+								"get-folder-files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Christian/Pictures/Sin título.png"
+								},
+								{
+									"key": "quote_number",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/drive/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"drive",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/drive/delete/1ZzZs9C7lNPUt6fcsmku9gbGACG58NDRL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"drive",
+								"delete",
+								"1ZzZs9C7lNPUt6fcsmku9gbGACG58NDRL"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Get Book Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_book_reader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api_book_reader/public/api/book/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api_book_reader",
+								"public",
+								"api",
+								"book",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Production",
+			"item": [
+				{
+					"name": "Get url google",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://apibookreader-production-0149.up.railway.app/api/auth/get-google-login-url",
+							"protocol": "https",
+							"host": [
+								"apibookreader-production-0149",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"get-google-login-url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Google",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"4/0AbUR2VOXq_p2kzMkNdqm5446C9wA4eCSWqVBZdQnWCug5Yy_SWe9SBWRbRHFah9rYOfnwQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://apibookreader-production-0149.up.railway.app/api/auth/google/callback",
+							"protocol": "https",
+							"host": [
+								"apibookreader-production-0149",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"google",
+								"callback"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
