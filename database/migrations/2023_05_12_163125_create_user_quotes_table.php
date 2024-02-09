@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('quote_description');
             $table->text('words');
 
-            $table->unsignedBigInteger('photo_id');
+            $table->unsignedBigInteger('photo_id')->nullable();
             $table->foreign('photo_id', 'fk_photo_id')->references('id')->on('photos');
 
             $table->integer('status')->index()->comment('Deleted=0 / Active=1 / Inactive=2')->default(1);

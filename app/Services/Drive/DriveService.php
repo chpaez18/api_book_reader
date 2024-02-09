@@ -86,6 +86,23 @@ class DriveService
         }
     }
 
+    public function getFolderIdByName($folderName) {
+        $response = $this->drive->files->listFiles([
+            'q' => "mimeType='application/vnd.google-apps.folder' and name='{$folderName}' and trashed=false",
+            'spaces' => 'drive',
+            'fields' => 'files(id, name)'
+        ]);
+    
+        foreach ($response->getFiles() as $file) {
+            if ($file->getName() === $folderName) {
+                return $file->getId();
+            }
+        }
+    
+        return null;
+    }
+    
+
     public function createFile($data){
 
         //Get data
@@ -96,20 +113,20 @@ class DriveService
 
         //Upload file to google drive folder
         //---------------------------------------------------------------------------------------------
-            $folderId = self::getFolderId($this->folderName);
-
+            $folderId = self::getFolderIdByName($this->folderName);
+            
             if (!$folderId) {
                 $folderId = self::createFolder($this->folderName);
             }
 
             $name = gettype($file) === 'object' ? $file->getClientOriginalName() : $file;
-            $name = "cita_n°_".$quoteNumber."_".$name;
+            $name = "cita_n°_".$quoteNumber."_photo";
             $fileMetadata = new \Google_Service_Drive_DriveFile();
             $fileMetadata->setName($name);
             $fileMetadata->setParents([$folderId]);
 
-            $content = gettype($file) === 'object' ?  File::get($file) : Storage::get($file);
-            $mimeType = gettype($file) === 'object' ? File::mimeType($file) : Storage::mimeType($file);
+            $content = File::get($file);
+            $mimeType = File::mimeType($file);
 
             $file = $this->drive->files->create($fileMetadata, [
                 'data' => $content,
@@ -138,16 +155,19 @@ class DriveService
             if ($file) {
                 $photo = new Photo();
                 $photo->google_drive_id = $file->id;
+                $photo->url_view = "https://drive.google.com/thumbnail?id=" . $file->getID()."&sz=w1000";
                 $photo->save();
 
                 $userPhoto = new UserPhoto();
                 $userPhoto->user_id = auth('api')->user()->id;
                 $userPhoto->photo_id = $photo->id;
+                $userPhoto->quote_id = $quoteNumber;
                 $userPhoto->save();
             }
         //---------------------------------------------------------------------------------------------
 
         //$file->id;
+        return $photo;
     }
 
     public function createFolder($folderName){
@@ -184,19 +204,19 @@ class DriveService
         $userId = auth('api')->user()->id;
         if ($photo) {
 
-            $userQuote = UserQuote::where('photo_id', $photo->id)->where('user_id', $userId)->first();
+/*             $userQuote = UserQuote::where('photo_id', $photo->id)->where('user_id', $userId)->first();
 
             if ($userQuote) {
                 $userQuote->delete();
-            }
+            } */
 
-            $userPhoto = UserPhoto::where('photo_id', $photo->id)->first();
+            $userPhoto = UserPhoto::where('photo_id', $photo->id)->where('user_id', $userId)->first();
 
             if ($userPhoto) {
                 $userPhoto->delete();
             }
 
-            $photo->delete();
+            //$photo->delete();
         }
 
         $this->drive->files->delete($id);

@@ -62,10 +62,10 @@ class User extends Authenticatable
         return new UserBuilder($query);
     }
 
-    /* public function photos()
+    public function photos()
     {
         return $this->HasMany(UserPhoto::class,'user_id');
-    } */
+    } 
 
     public function quotes()
     {

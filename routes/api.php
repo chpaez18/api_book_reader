@@ -69,6 +69,7 @@ Route::middleware('auth:api')->group(function () {
     /*-------------------------------------------------------------------------------/
      *********************  Book Administration ********************************** */
         Route::get('/book/info', 'App\Http\Controllers\BookController@getInfo');
+        Route::post('/book/save-anecdote', 'App\Http\Controllers\BookController@saveAnecdote');
     /*-------------------------------------------------------------------------------*/
 
 

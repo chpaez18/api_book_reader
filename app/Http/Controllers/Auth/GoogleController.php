@@ -17,7 +17,7 @@ class GoogleController extends Controller
     public function googleLoginUrl()
     {
         return Response::json([
-            'url' => Socialite::driver('google')->stateless()->with(['access_type' => 'offline', 'prompt' => 'consent', 'scope'=>"openid profile email https://www.googleapis.com/auth/drive", 'response_type'=>"code"])->redirect()->getTargetUrl(),
+            'url' => Socialite::driver('google')->stateless()->with(['access_type' => 'offline', 'scope'=>"openid profile email https://www.googleapis.com/auth/drive", 'response_type'=>"code"])->redirect()->getTargetUrl(),
         ]);
     }
 

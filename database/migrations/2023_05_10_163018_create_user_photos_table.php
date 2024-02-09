@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('photo_id');
             $table->foreign('photo_id', 'fk_photo_id')->references('id')->on('photos');
 
+            $table->unsignedBigInteger('quote_id');
+            $table->foreign('quote_id', 'fk_quote_id')->references('id')->on('quotes');
+
             $table->timestamps();
         });
     }

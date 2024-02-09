@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('google_drive_id');
+            $table->text('url_view');
             $table->integer('status')->index()->comment('Inactive=0 / Active=1')->default(1);
             $table->timestamps();
         });

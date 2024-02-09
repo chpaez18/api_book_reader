@@ -61,7 +61,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-       dd($exception);
         if ($exception instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
