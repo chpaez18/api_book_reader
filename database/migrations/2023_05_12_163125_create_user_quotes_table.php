@@ -21,15 +21,18 @@ return new class extends Migration
 
             $table->unsignedBigInteger('quote_id');
             $table->foreign('quote_id', 'fk_quote_id')->references('id')->on('quotes');
+
             $table->integer('is_completed')->default(0);
-            $table->string('mood', 255);
-            $table->text('quote_description');
-            $table->text('words');
+            $table->string('mood', 255)->nullable();
+            $table->text('quote_description')->nullable();
+            $table->text('words')->nullable();
 
             $table->unsignedBigInteger('photo_id')->nullable();
             $table->foreign('photo_id', 'fk_photo_id')->references('id')->on('photos');
 
             $table->integer('status')->index()->comment('Deleted=0 / Active=1 / Inactive=2')->default(1);
+            $table->date('date')->nullable();
+
             $table->timestamps();
         });
     }

@@ -39,6 +39,8 @@ class UserTransformer extends TransformerAbstract
             'id'         => $user->id, 
             'name' => $user->name,
             'email'      => $user->email,
+            'rol'      => $user->getRoleNames()[0],
+            'code_validated'      => ($user->code != null ? $user->code->is_validated : 0),
             'status'     => $user->status,
         ];
     }

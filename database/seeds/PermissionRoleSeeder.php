@@ -23,6 +23,11 @@ class PermissionRoleSeeder extends Seeder
                 'name'=>'Admin',
                 'guard_name'=>'api'
             ]);
+
+            $roleBuyer = Role::create([
+                'name'=>'Buyer',
+                'guard_name'=>'api'
+            ]);
         //--------------------------------------------------------
 
         //Create initial permissions
@@ -59,6 +64,15 @@ class PermissionRoleSeeder extends Seeder
                 Permission::create(['name' => 'users.revoke-permissions', 'guard_name'=>'api'])->assignRole($roleAdmin);
                 Permission::create(['name' => 'users.update-password', 'guard_name'=>'api'])->assignRole($roleAdmin);
             //--------------------------------------------------------
+
+            //Code generator
+            //--------------------------------------------------------
+                Permission::create(['name' => 'code.index', 'guard_name'=>'api'])->assignRole($roleAdmin);
+                Permission::create(['name' => 'code.generate', 'guard_name'=>'api'])->assignRole($roleAdmin);
+                Permission::create(['name' => 'code.validate', 'guard_name'=>'api'])->assignRole($roleAdmin);
+                Permission::create(['name' => 'code.change-status', 'guard_name'=>'api'])->assignRole($roleAdmin);
+            //--------------------------------------------------------
+
 
         //--------------------------------------------------------
 

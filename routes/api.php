@@ -72,6 +72,14 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/book/save-anecdote', 'App\Http\Controllers\BookController@saveAnecdote');
     /*-------------------------------------------------------------------------------*/
 
+    /*-------------------------------------------------------------------------------/
+     *********************  Codes Administration ********************************** */
+        Route::get('/code/index', 'App\Http\Controllers\CodeController@getCodes');
+        Route::post('/code/generate', 'App\Http\Controllers\CodeController@generate');
+        Route::post('/code/change-status', 'App\Http\Controllers\CodeController@changeStatus');
+        Route::post('/code/validate-code', 'App\Http\Controllers\CodeController@validateCode');
+    /*-------------------------------------------------------------------------------*/
+
 
 });
 

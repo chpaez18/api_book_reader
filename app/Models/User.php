@@ -3,17 +3,18 @@
 
 namespace App\Models;
 
-use App\Models\Admin\Rol;
+use App\Models\Code;
 
-use App\Models\{UserPhoto, UserQuote};
+use App\Models\Admin\Rol;
 use App\Builders\UserBuilder;
 use Laravel\Passport\HasApiTokens;
 use App\Transformers\UserTransformer;
 
 
+use App\Models\{UserPhoto, UserQuote};
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,6 +71,10 @@ class User extends Authenticatable
     public function quotes()
     {
         return $this->HasMany(UserQuote::class,'user_id');
+    }
+    public function code()
+    {
+        return $this->HasOne(Code::class,'email', 'email');
     }
 
 

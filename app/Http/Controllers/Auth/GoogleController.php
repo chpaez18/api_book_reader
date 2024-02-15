@@ -55,6 +55,9 @@ class GoogleController extends Controller
                 'access_token' => $user->token
             ]);
 
+            //Asignamos el rol
+            $newUser->assignRole('Buyer');
+
             $token = $newUser->createToken('access_token')->accessToken;
             $user = $newUser;
             $user->access_token = $actualToken;

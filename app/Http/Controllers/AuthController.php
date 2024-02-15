@@ -120,7 +120,7 @@ class AuthController extends Controller
         } catch (\Exception $exception) {
             return $this->showMessage($exception->getMessage(), 500);
         }
-        
+        $user->rol = $user->getRoleNames()[0];
         $data = [
             'token' => $resp->access_token,
             'expiresIn' => $resp->expires_in,
