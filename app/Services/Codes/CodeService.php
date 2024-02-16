@@ -43,7 +43,9 @@ class CodeService
         
         //Save Code
         //------------------------------------------------------------------------------------------------
-            $code = base64_encode($this->getRandomString()."-".date("i:s"));
+            $randomPart = $this->getRandomString(10); // Ajusta la longitud a 10 para dejar espacio para la fecha y el separador
+            $datePart = date("is");
+            $code = substr(base64_encode($randomPart . "-" . $datePart), 0, 20);
             $model = Code::updateOrCreate(
                 [
                     //Attributes for search record
@@ -125,6 +127,33 @@ class CodeService
         return true;
     }
 
+
+    public function deleteCode($id)
+    {
+        //Get Data
+        //------------------------------------------------------------------------------------------------
+            $model = Code::where('id', $id)->first();
+
+            if ($model == null) {
+                return [
+                    "message" => "Codigo no existe",
+                    "code" => Response::HTTP_OK
+                ];
+            }
+        //------------------------------------------------------------------------------------------------
+
+        //Delete Code
+        //------------------------------------------------------------------------------------------------
+            if ($model->delete()) {
+                return [
+                    "message" => "El codigo ha sido eliminado",
+                    "code" => Response::HTTP_OK
+                ];
+            }
+        //------------------------------------------------------------------------------------------------
+
+        return true;
+    }
 
     protected function getRandomString($length = 16)
     {

@@ -78,6 +78,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/code/generate', 'App\Http\Controllers\CodeController@generate');
         Route::post('/code/change-status', 'App\Http\Controllers\CodeController@changeStatus');
         Route::post('/code/validate-code', 'App\Http\Controllers\CodeController@validateCode');
+        Route::delete('/code/delete/{id}', 'App\Http\Controllers\CodeController@deleteCode');
     /*-------------------------------------------------------------------------------*/
 
 

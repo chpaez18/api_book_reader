@@ -34,7 +34,7 @@ class BookService
 
         //Get quotes
         //------------------------------------------------------------------------------------------------
-            $quotes = Quote::select('id','first_title', 'second_title', 'message', 'number_quote')->where('status', Quote::Active)->get()->toArray();
+            $quotes = Quote::select('id','first_title', 'second_title', 'message', 'number_quote')->where('status', Quote::Active)->orderBy('number_quote')->get()->toArray();
         //------------------------------------------------------------------------------------------------
 
         //Get user book info

@@ -71,6 +71,7 @@ class PermissionRoleSeeder extends Seeder
                 Permission::create(['name' => 'code.generate', 'guard_name'=>'api'])->assignRole($roleAdmin);
                 Permission::create(['name' => 'code.validate', 'guard_name'=>'api'])->assignRole($roleAdmin);
                 Permission::create(['name' => 'code.change-status', 'guard_name'=>'api'])->assignRole($roleAdmin);
+                Permission::create(['name' => 'code.delete', 'guard_name'=>'api'])->assignRole($roleAdmin);
             //--------------------------------------------------------
 
 

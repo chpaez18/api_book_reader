@@ -40,6 +40,7 @@ class CodeController extends ApiController
             throw $exception;
 
         }
+        return $this->showMessage("Código generado", 200);
         
     }
 
@@ -69,6 +70,20 @@ class CodeController extends ApiController
             
         }
         return $this->showMessage($validatedCode["message"], $validatedCode["code"]);
+    }
+
+    public function deleteCode($id)
+    {
+        try {
+
+            $code = $this->codeService->deleteCode($id);
+            
+        } catch (Exception $exception) {
+            
+            throw $exception;
+            
+        }
+        return $this->showMessage($code["message"], $code["code"]);
     }
 
 }
