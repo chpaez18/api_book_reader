@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Mailer;
+
 
 class CodeService
 {
@@ -58,6 +61,14 @@ class CodeService
                     'code' => $code
                 ]
             );
+        //------------------------------------------------------------------------------------------------
+
+        // Send email to user with the code
+        //------------------------------------------------------------------------------------------------
+            if (env('SEND_MAILS')) {
+                Mail::to($email)
+                ->send(new Mailer($code, 'emails.bienvenida', '¡Bienvenid@ a 100 Citas!'));
+            }
         //------------------------------------------------------------------------------------------------
 
         return $model;
