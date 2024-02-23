@@ -17,10 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'fk_user_id')->references('id')->on('users');
+            $table->foreign('user_id', 'fk_user_quotes_user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('quote_id');
-            $table->foreign('quote_id', 'fk_quote_id')->references('id')->on('quotes');
+            $table->foreign('quote_id', 'fk_user_quotes_quote_id')->references('id')->on('quotes');
 
             $table->integer('is_completed')->default(0);
             $table->string('mood', 255)->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('words')->nullable();
 
             $table->unsignedBigInteger('photo_id')->nullable();
-            $table->foreign('photo_id', 'fk_photo_id')->references('id')->on('photos');
+            $table->foreign('photo_id', 'fk_user_quotes_photo_id')->references('id')->on('photos');
 
             $table->integer('status')->index()->comment('Deleted=0 / Active=1 / Inactive=2')->default(1);
             $table->date('date')->nullable();
