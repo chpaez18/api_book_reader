@@ -149,13 +149,13 @@ class DriveService
             }
         //---------------------------------------------------------------------------------------------
 
-
         //Save file on db by user
         //---------------------------------------------------------------------------------------------
             if ($file) {
                 $photo = new Photo();
                 $photo->google_drive_id = $file->id;
-                $photo->url_view = "https://drive.google.com/thumbnail?id=" . $file->getID()."&sz=w1000";
+                //$photo->url_view = "https://drive.google.com/thumbnail?id=" . $file->getID()."=w1000";
+                $photo->url_view = "https://lh3.googleusercontent.com/d/" . $file->getID()."=w1000";
                 $photo->save();
 
                 $userPhoto = new UserPhoto();
