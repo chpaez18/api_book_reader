@@ -4,7 +4,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\{
     PermissionRoleSeeder,
     UserSeeder,
-    BookSeeder
+    BookSeeder,
+    QuotesSeeder
 };
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BookSeeder::class);
         $this->call(PermissionRoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(QuotesSeeder::class);
     }
 
 }
