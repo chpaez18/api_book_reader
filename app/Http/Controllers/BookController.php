@@ -31,6 +31,19 @@ class BookController extends ApiController
         }
     }
 
+    public function getQuotes()
+    {
+        try {
+
+            return $this->successResponse($this->bookService->getQuotes(), 200);
+
+        } catch (Exception $exception) {
+
+            throw $exception;
+
+        }
+    }
+
     public function saveAnecdote(Request $request)
     {
         try {

@@ -60,7 +60,7 @@ class GoogleController extends Controller
 
             $token = $newUser->createToken('access_token')->accessToken;
             $user = $newUser;
-            $user->access_token = $actualToken;
+            $user->access_token = $token;
             $user->update();
 
         }
@@ -85,6 +85,49 @@ class GoogleController extends Controller
 
         return response()->json([
             'new_google_access_token' => $user->access_token
+        ]);
+    }
+
+    public function googleLogin(Request $request)
+    {
+        $googleToken = $request->token;
+        $user = Socialite::driver('google')->userFromToken($googleToken);
+
+        // Verificamos si el usuario ya existe en la base de datos.
+        //-----------------------------------------------------------------------
+        $existingUser = User::where('email', $user->getEmail())->first();
+
+        if ($existingUser) {
+            // Si el usuario ya existe, inicia sesión y crea un token de acceso.
+
+            $token = $existingUser->createToken('access_token')->accessToken;
+            $user = $existingUser;
+            $user->access_token = $googleToken;
+            $user->update();
+        } else {
+            // Si el usuario no existe, crea uno nuevo y crea un token de acceso.
+            $newUser = User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => bcrypt('secret'), // Puedes establecer una contraseña aleatoria o solicitar al usuario que la cambie.
+                'access_token' => $googleToken
+            ]);
+
+            //Asignamos el rol
+            $newUser->assignRole('Buyer');
+
+            $token = $newUser->createToken('access_token')->accessToken;
+            $user = $newUser;
+            $user->access_token = $googleToken;
+            $user->update();
+        }
+        //-----------------------------------------------------------------------
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user,
+            'code_validated' => (isset($user->code) ?  $user->code->is_validated : 0)
         ]);
     }
 

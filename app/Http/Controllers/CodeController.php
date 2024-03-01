@@ -41,7 +41,7 @@ class CodeController extends ApiController
 
         }
         return $this->showMessage("Código generado", 200);
-        
+
     }
 
     public function changeStatus(Request $request)
@@ -63,13 +63,13 @@ class CodeController extends ApiController
         try {
 
             $validatedCode = $this->codeService->validateCode($request);
-            
+
         } catch (Exception $exception) {
-            
+
             throw $exception;
-            
+
         }
-        return $this->showMessage($validatedCode["message"], $validatedCode["code"]);
+        return $this->showMessage($validatedCode, 200);
     }
 
     public function deleteCode($id)
@@ -77,11 +77,11 @@ class CodeController extends ApiController
         try {
 
             $code = $this->codeService->deleteCode($id);
-            
+
         } catch (Exception $exception) {
-            
+
             throw $exception;
-            
+
         }
         return $this->showMessage($code["message"], $code["code"]);
     }

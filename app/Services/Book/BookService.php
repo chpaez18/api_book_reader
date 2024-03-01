@@ -65,6 +65,16 @@ class BookService
         return $finalData;
     }
 
+    public function getQuotes()
+    {
+        //Get quotes
+        //------------------------------------------------------------------------------------------------
+            $quotes = Quote::select('id','first_title', 'second_title', 'message', 'number_quote')->where('status', Quote::Active)->orderBy('number_quote')->get()->toArray();
+        //------------------------------------------------------------------------------------------------
+
+        return $quotes;
+    }
+
     public function saveAnecdote($data, $driveService)
     {
         //Get anecdote data

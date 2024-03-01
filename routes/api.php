@@ -28,7 +28,7 @@ Route::middleware('guest')->group(function () {
     //google login
     Route::get('auth/get-google-login-url', 'App\Http\Controllers\Auth\GoogleController@googleLoginUrl');
     Route::get('auth/google/callback', 'App\Http\Controllers\Auth\GoogleController@loginCallback');
-    //Route::post('auth/google', 'App\Http\Controllers\Auth\GoogleController@googleLogin');
+    Route::post('auth/google/login', 'App\Http\Controllers\Auth\GoogleController@googleLogin');
 
 
 });
@@ -69,6 +69,7 @@ Route::middleware('auth:api')->group(function () {
     /*-------------------------------------------------------------------------------/
      *********************  Book Administration ********************************** */
         Route::get('/book/info', 'App\Http\Controllers\BookController@getInfo');
+        Route::get('/book/quotes', 'App\Http\Controllers\BookController@getQuotes');
         Route::post('/book/save-anecdote', 'App\Http\Controllers\BookController@saveAnecdote');
     /*-------------------------------------------------------------------------------*/
 

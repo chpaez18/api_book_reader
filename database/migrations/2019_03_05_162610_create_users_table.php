@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password', 100);
             $table->string('first_name', 50)->nullable();
             $table->string('email', 100)->unique();
-            $table->bigInteger('google_id')->nullable();
             $table->text('access_token', 255)->nullable();
             $table->integer('status')->index()->comment('Deleted=0 / Active=1 / Inactive=2')->default(1);
             $table->timestamps();

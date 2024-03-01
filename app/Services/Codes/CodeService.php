@@ -43,7 +43,7 @@ class CodeService
             $email = $request->input('email');
             $user = auth('api')->user();
         //------------------------------------------------------------------------------------------------
-        
+
         //Save Code
         //------------------------------------------------------------------------------------------------
             $randomPart = $this->getRandomString(10); // Ajusta la longitud a 10 para dejar espacio para la fecha y el separador
@@ -81,39 +81,51 @@ class CodeService
             $code = $request->input('code');
             $user = auth('api')->user();
         //------------------------------------------------------------------------------------------------
-    
+
         //Validate Code
         //------------------------------------------------------------------------------------------------
             $model = Code::where('code', $code)->first();
-        
+
             if (!$model) {
                 return [
+                    "status" => 'warning',
                     "message" => "El código no existe",
-                    "code" => Response::HTTP_OK
+                    "detail" => "Vaya, parece que el código que ingresaste no existe, por favor, verifica que sea el correcto."
                 ];
             }
-        
+
             if ($model->status == Code::Inactive) {
                 return [
+                    "status" => 'warning',
                     "message" => "Código invalido",
-                    "code" => Response::HTTP_OK
+                    "detail" => "Vaya, el código que ingresaste se encuentra inactivo, contacta con el administrador."
                 ];
             }
-        
+
             if ($model->is_validated == 1) {
                 return [
+                    "status" => 'warning',
                     "message" => "Este código ya ha sido válidado",
-                    "code" => Response::HTTP_OK
+                    "detail" => "Vaya, el código que ingresaste ya ha sido utilizado, porfavor, prueba con otro."
+                ];
+            }
+
+            if ($model->email != $user->email) {
+                return [
+                    "status" => 'warning',
+                    "message" => "Código invalido",
+                    "detail" => "Vaya, el código que ingresaste no corresponde a tu cuenta, por favor, verifica que sea el correcto."
                 ];
             }
         //------------------------------------------------------------------------------------------------
-            
+
         $model->is_validated = 1;
         $model->save();
 
         return [
+            "status" => 'success',
             "message" => "Código válido",
-            "code" => Response::HTTP_OK
+            "detail" => "Hemos válidado tu código correctamente, puedes continuar y disfrutar de la experiencia."
         ];
     }
 
