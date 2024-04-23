@@ -86,6 +86,7 @@ class AuthController extends Controller
      */
     public function login(): JsonResponse
     {   
+        dd(1);
         try {
 
             $data = [];
