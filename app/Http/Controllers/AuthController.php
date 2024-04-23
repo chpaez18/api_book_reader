@@ -96,7 +96,7 @@ class AuthController extends Controller
             //--------------------------------------------------------------
 
         } catch (\Exception $exception) {
-            return $this->showMessage($exception->getMessage(), 500);
+            return $this->showMessage($exception->getMessage(). " Line: ".$exception->getLine(), 500);
         }
 
         //If the data is incorrect, we return an error
@@ -118,7 +118,7 @@ class AuthController extends Controller
             //-------------------------------------------------------------------
 
         } catch (\Exception $exception) {
-            return $this->showMessage($exception->getMessage(), 500);
+            return $this->showMessage($exception->getMessage(). " Line: ".$exception->getLine(), 500);
         }
         $user->rol = $user->getRoleNames()[0];
         $data = [
