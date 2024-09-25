@@ -40,7 +40,7 @@ class CodeService
         //Get Data
         //------------------------------------------------------------------------------------------------
             $name = $request->input('name');
-            $email = $request->input('email');
+            $email = strtolower(trim($request->input('email')));
             $user = auth('api')->user();
         //------------------------------------------------------------------------------------------------
 

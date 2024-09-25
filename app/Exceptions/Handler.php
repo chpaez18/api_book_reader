@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Throwable;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Response;
+use App\Services\LogsError\LogErrorService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -61,6 +62,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        //We call the service to save the error in the database
+        //--------------------------------------------------------
+            app(LogErrorService::class)->createLogError($exception, request());
+        //--------------------------------------------------------
 
         if ($exception instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($exception, $request);
