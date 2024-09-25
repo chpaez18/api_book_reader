@@ -77,7 +77,7 @@ class UserService
         //-----------------------------------------------------------------
             $data = $request->safe()->all();
             $data = [
-                'email' => $data["email"],
+                'email' => strtolower(trim($data["email"])),
                 'password' => Hash::make($data["password"]),
                 'first_name' => $data["first_name"]
             ];
