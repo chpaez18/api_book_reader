@@ -20,4 +20,9 @@ class Photo extends Model
     {
         return $this->HasMany(Photo::class,'photo_id');
     }
+
+    public function userPhotos()
+    {
+        return $this->hasMany(UserPhoto::class, 'photo_id');
+    }
 }

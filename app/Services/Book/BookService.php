@@ -79,8 +79,8 @@ class BookService
     public function saveAnecdote($data, $driveService)
     {
 
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
 
             //Obtenemos la información de la cita
             //------------------------------------------------------------------------------------------------
@@ -196,14 +196,15 @@ class BookService
                     // Verificamos si la anecdota ha sido creada recientemente
                     //--------------------------------------------------------------------------------------------------
                         if (!$anecdote->wasRecentlyCreated) {
-
                             // Verificamos si el usuario ya tiene una foto para esta cita
                             //-----------------------------------------------------------------------
                                 $hasPhotos = $user->photos->where('quote_id', $data->input('quote_id'))->first();
+                                /* $hasPhotos = Photo::whereHas('userPhotos', function ($query) use ($user, $data) {
+                                    $query->where('user_id', $user->id)
+                                          ->where('quote_id', $data->input('quote_id'));
+                                })->first(); */
 
                                 if ($hasPhotos) {
-
-                                    $photo = Photo::where('id', $hasPhotos->photo->id)->first();
 
                                     // Actualizamos la referencia de `photo_id` en `user_quotes` para que no apunte a esta foto
                                     //-----------------------------------------------------------------------
@@ -213,7 +214,8 @@ class BookService
 
                                     //Eliminamos la foto de Google Drive
                                     //-----------------------------------------------------------------------
-                                        $driveService->deleteFile($photo->google_drive_id);
+                                        //$driveService->deleteFile($photo->google_drive_id);
+                                        $photoToSave['photo_google_id'] = $hasPhotos->photo->google_drive_id;
                                     //-----------------------------------------------------------------------
 
 
@@ -222,9 +224,10 @@ class BookService
                                         UploadImageToDriveJob::dispatch($photoToSave);
                                     //-----------------------------------------------------------------------
 
-                                    $photo->delete();
+                                    $hasPhotos->delete();
+                                    $hasPhotos->photo->delete();
 
-                                    return $anecdote;
+                                    //return $anecdote;
 
                                 } else {
 
@@ -233,7 +236,6 @@ class BookService
                                         UploadImageToDriveJob::dispatch($photoToSave);
                                     //--------------------------------------------------------------------------------------
 
-                                    return $anecdote;
                                 }
                             //-----------------------------------------------------------------------
 
@@ -244,11 +246,8 @@ class BookService
                                 UploadImageToDriveJob::dispatch($photoToSave);
                             //--------------------------------------------------------------------------------------
 
-                            return $anecdote;
                         }
                     //--------------------------------------------------------------------------------------------------
-
-                    return $anecdote;
 
                 }
             //------------------------------------------------------------------------------------------------
@@ -261,7 +260,8 @@ class BookService
             return $anecdote;
 
         } catch (\Exception $e) {
-
+            \Log::error('Error al guardar la anécdota: ' . $e->getMessage());
+            dd($e->getMessage());
             DB::rollBack();
             throw $e;
         }

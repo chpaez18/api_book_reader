@@ -70,6 +70,11 @@ class UploadImageToDriveJob implements ShouldQueue
             $content = File::get($filePath);
             $mimeType = File::mimeType($filePath);
 
+            // Delete the file if it already exists
+            if (isset($this->photoData['photo_google_id'])) {
+                $drive->files->delete($this->photoData['photo_google_id']);
+            }
+
             $file = $drive->files->create($fileMetadata, [
                 'data' => $content,
                 'mimeType' => $mimeType,
@@ -109,6 +114,7 @@ class UploadImageToDriveJob implements ShouldQueue
                 $userPhoto->photo_id = $photo->id;
                 $userPhoto->quote_id = $quoteNumber;
                 $userPhoto->save();
+
             }
         //---------------------------------------------------------------------------------------------
 
