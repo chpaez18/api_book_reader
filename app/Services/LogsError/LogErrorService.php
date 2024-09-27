@@ -76,7 +76,7 @@ class LogErrorService
         //-----------------------------------------------------------------
             $errorData = [
                 'env' => app()->environment(),
-                'user_id' => Auth::id(),
+                //'user_id' => Auth::id(),
                 'error' => $exception->getMessage(),
                 'ip' => $request ? $request->ip() : null,
                 'browser' => $request ? $request->header('User-Agent') : 'CLI',
