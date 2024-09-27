@@ -31,7 +31,7 @@ class AuthController extends Controller
     }
 
     /** 
-     * function for register a new user
+     * function for register a new user, SIN USAR
      * 
      * @return Illuminate\Http\JsonResponse
      */
@@ -86,7 +86,7 @@ class AuthController extends Controller
      * @return Illuminate\Http\JsonResponse
      */
     public function login(): JsonResponse
-    {   
+    {
         try {
 
             $data = [];
@@ -127,12 +127,12 @@ class AuthController extends Controller
             'expiresIn' => $resp->expires_in,
             'user' => $user,
         ];
-        
+
         return $this->successResponse($data, 200);
     }
 
     /**
-     * function that generates a new token updated to the user
+     * function that generates a new token updated to the user, SIN USAR
      * 
      * @return Illuminate\Http\JsonResponse
      */
@@ -155,8 +155,45 @@ class AuthController extends Controller
         return $this->successResponse($data, 200);
     }
 
+
+    public function refreshAccessToken(Request $request)
+    {
+        $client = new \Google_Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+
+        // Verifica si hay refresh_token
+        if ($user->refresh_token) {
+            try {
+                // Usa el refresh_token para obtener un nuevo access_token
+                $client->refreshToken($user->refresh_token);
+                $newAccessToken = $client->getAccessToken();
+
+                // Actualizar el nuevo access_token en la base de datos
+                $user->access_token = $newAccessToken['access_token'];
+                $user->save();
+
+                return response()->json([
+                    'access_token' => $newAccessToken['access_token'],
+                ], 200);
+
+            } catch (\Exception $e) {
+                // Si hay un error al refrescar el token (e.g., token caducado), devolver mensaje al frontend
+                return response()->json([
+                    'message' => 'Refresh token expired or invalid, need user consent',
+                ], 401); // 401: Unauthorized, necesita reautenticación
+            }
+        } else {
+            // Si no hay refresh_token, indicar que es necesario un nuevo consentimiento
+            return response()->json([
+                'message' => 'No refresh token, need user consent',
+            ], 401); // 401: Unauthorized
+        }
+    }
+
+
     /**
-     * function to validate reset token
+     * function to validate reset token, SIN USAR
      * 
      * @return Illuminate\Http\JsonResponse
      */
@@ -189,7 +226,7 @@ class AuthController extends Controller
     }
 
     /**
-     * function to reset user password
+     * function to reset user password, SIN USAR
      * 
      * @return Illuminate\Http\JsonResponse
      */

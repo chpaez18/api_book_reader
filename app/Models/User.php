@@ -40,6 +40,7 @@ class User extends Authenticatable
         'password',
         'google_id',
         'access_token',
+        'refresh_token',
         'reset_password_token',
         'reset_password_token_created_at',
         'status'

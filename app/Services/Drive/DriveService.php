@@ -2,15 +2,16 @@
 
 namespace App\Services\Drive;
 
+use App\Models\User;
 use App\Models\Photo;
-use App\Models\UserPhoto;
 
+use App\Models\UserPhoto;
 use App\Models\UserQuote;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+
+
 use Illuminate\Support\Facades\DB;
-
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
@@ -33,6 +34,86 @@ class DriveService
         $this->folderName = "100 citas | carpeta de imagenes";
     }
 
+    /**
+     * Inicializa el cliente de Google Drive (esto se implementa para que pueda ser usado en el job)
+     */
+    public function initializeDriveClient(User $user)
+    {
+        // Configuramos el cliente de Google
+        //---------------------------------------------------------------------------------------------
+            $client = new \Google_Client();
+            $client->setClientId(env('GOOGLE_CLIENT_ID'));
+            $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        //---------------------------------------------------------------------------------------------
+
+        // Obtenemos el token de acceso del usuario, para autenticar el cliente con google
+        //---------------------------------------------------------------------------------------------
+            $accessToken = $user->access_token;
+        //---------------------------------------------------------------------------------------------
+
+        // Establecemos el token de acceso en el cliente
+        //---------------------------------------------------------------------------------------------
+            $client->setAccessToken($accessToken);
+        //---------------------------------------------------------------------------------------------
+
+        // Verificamos si el token ha expirado
+        //---------------------------------------------------------------------------------------------
+            if ($client->isAccessTokenExpired()) {
+
+                // Refrescamos el token si es necesario, dado que tiene 1 hora de duracion, y si ya expiro, se debe refrescar.
+                // Por ello es importante el refresh_token, el cual almacenamos la primera vez que el usuario se autentica.
+                //---------------------------------------------------------------------------------------------
+                    $refreshToken = $user->refresh_token;
+
+                    if ($refreshToken) {
+
+                        // Refrescamos el access_token usando el refresh_token
+                        //---------------------------------------------------------------------------
+                            $newAccessToken = $client->fetchAccessTokenWithRefreshToken($refreshToken);
+                        //---------------------------------------------------------------------------
+
+                        // Verificamos si hubo un error al refrescar el token
+                        //---------------------------------------------------------------------------
+                            if (isset($newAccessToken['error'])) {
+                                \Log::error($newAccessToken);
+                            }
+                        //---------------------------------------------------------------------------
+
+                        // Almacenamos el nuevo access_token en la base de datos
+                        //---------------------------------------------------------------------------
+                            $user->access_token = $newAccessToken['access_token'];
+                            $user->save();
+                        //---------------------------------------------------------------------------
+
+                        // Establecemos el nuevo access_token en el cliente
+                        //---------------------------------------------------------------------------
+                            $client->setAccessToken($newAccessToken['access_token']);
+                        //---------------------------------------------------------------------------
+
+                    } else {
+                        throw new \Exception('No refresh token available.');
+                    }
+                //---------------------------------------------------------------------------------------------
+            }
+        //---------------------------------------------------------------------------------------------
+
+        // Creamos una instancia de Google Drive
+        //---------------------------------------------------------------------------
+            $this->drive = new \Google_Service_Drive($client);
+        //---------------------------------------------------------------------------
+    }
+
+    /**
+     * Obtiene el cliente de Google Drive para realizar operaciones.
+     */
+    public function getDrive()
+    {
+        if (!$this->drive) {
+            throw new \Exception('Google Drive client has not been initialized.');
+        }
+
+        return $this->drive;
+    }
 
     public function ListFolders($id){
 
@@ -101,7 +182,6 @@ class DriveService
     
         return null;
     }
-    
 
     public function createFile($data){
 
@@ -204,7 +284,7 @@ class DriveService
         $userId = auth('api')->user()->id;
         if ($photo) {
 
-/*             $userQuote = UserQuote::where('photo_id', $photo->id)->where('user_id', $userId)->first();
+            /*$userQuote = UserQuote::where('photo_id', $photo->id)->where('user_id', $userId)->first();
 
             if ($userQuote) {
                 $userQuote->delete();

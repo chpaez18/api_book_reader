@@ -20,14 +20,14 @@ return $request->user();
 Route::middleware('guest')->group(function () {
     Route::post('register', 'AuthController@register')->name('register');
     Route::post('login', 'AuthController@login')->name('login');
-    Route::post('refresh-token', 'AuthController@refreshToken')->name('refreshToken');
+    Route::post('check-refresh-token', 'AuthController@refreshAccessToken')->name('refreshToken');
     Route::post('forgot-password', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('validate-reset-token', 'AuthController@validateResetToken');
     Route::post('reset-password', 'AuthController@resetPassword')->name('resetPassword');
 
     //google login
-    Route::get('auth/get-google-login-url', 'App\Http\Controllers\Auth\GoogleController@googleLoginUrl');
-    Route::get('auth/google/callback', 'App\Http\Controllers\Auth\GoogleController@loginCallback');
+    Route::get('auth/get-google-login-url', 'App\Http\Controllers\Auth\GoogleController@googleLoginUrl');//SIN USAR
+    Route::get('auth/google/callback', 'App\Http\Controllers\Auth\GoogleController@loginCallback');//SIN USAR
     Route::post('auth/google/login', 'App\Http\Controllers\Auth\GoogleController@googleLogin');
 
 
