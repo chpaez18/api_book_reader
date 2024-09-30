@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Book\BookService;
+use App\Jobs\UploadImageToDriveJob;
 use App\Services\Drive\DriveService;
 use App\Http\Controllers\ApiController;
 

@@ -113,7 +113,7 @@ class BookService
 
             //Guardamos la imagen
             //------------------------------------------------------------------------------------------------
-                /* if ($data->has('image')) {
+                if ($data->has('image')) {
 
                     $imageData = $data->input('image');
                     // Encuentra la posición del primer carácter ',' que separa el tipo MIME de los datos base64
@@ -125,7 +125,7 @@ class BookService
 
 
                     // Guarda la imagen en un archivo temporal
-                    $tempImage = tempnam(sys_get_temp_dir(), 'image');
+                    $tempImage = storage_path('app/temp_images/' . uniqid() . '.png');
                     file_put_contents($tempImage, $image);
 
                     // Opcional: Verifica si el archivo temporal es una imagen válida
@@ -134,14 +134,16 @@ class BookService
                     }
 
                     $photoToSave = [
-                        'file' => $tempImage,
-                        'quote_number' => $data->input('quote_id')
+                        'file_path' => $tempImage,
+                        'quote_number' => $data->input('quote_id'),
+                        'user_id' => $user->id,
+                        'user_quote_id' => $anecdote->id
                     ];
 
-                    if (!$anecdote->wasRecentlyCreated) {
+                    /* if (!$anecdote->wasRecentlyCreated) {
                         $hasPhotos = $user->photos->where('quote_id', $data->input('quote_id'))->first();
                         if ($hasPhotos) {
-                            
+
                             $photo = Photo::where('id', $hasPhotos->photo->id)->first();
                             $driveService->deleteFile($photo->google_drive_id);
 
@@ -156,42 +158,14 @@ class BookService
                             $anecdote->photo_id = $res->id;
                             $anecdote->save();
                         }
-                    
+
                     } else {
                         $res = $driveService->createFile($photoToSave);
                         $anecdote->photo_id = $res->id;
                         $anecdote->save();
                     }
 
-                    unlink($tempImage);
-
-                } */
-
-                if ($data->has('image')) {
-
-                    //Obtenemos la imagen en base64
-                    //-----------------------------------------------------------------------
-                        $imageData = $data->input('image');
-                        $commaPosition = strpos($imageData, ',') + 1;
-                        $base64Str = substr($imageData, $commaPosition);
-                        $image = base64_decode($base64Str);
-                    //-----------------------------------------------------------------------
-
-                    // Guardamos la imagen en un archivo temporal
-                    //-----------------------------------------------------------------------
-                        $tempImagePath = storage_path('app/temp_images/' . uniqid() . '.png');
-                        file_put_contents($tempImagePath, $image);
-                    //-----------------------------------------------------------------------
-
-                    // Preparamos los datos que pasaremos al job
-                    //-----------------------------------------------------------------------
-                        $photoToSave = [
-                            'file_path' => $tempImagePath,
-                            'quote_number' => $data->input('quote_id'),
-                            'user_id' => $user->id,
-                            'user_quote_id' => $anecdote->id
-                        ];
-                    //-----------------------------------------------------------------------
+                    unlink($tempImage); */
 
                     // Verificamos si la anecdota ha sido creada recientemente
                     //--------------------------------------------------------------------------------------------------
@@ -199,11 +173,6 @@ class BookService
                             // Verificamos si el usuario ya tiene una foto para esta cita
                             //-----------------------------------------------------------------------
                                 $hasPhotos = $user->photos->where('quote_id', $data->input('quote_id'))->first();
-                                /* $hasPhotos = Photo::whereHas('userPhotos', function ($query) use ($user, $data) {
-                                    $query->where('user_id', $user->id)
-                                          ->where('quote_id', $data->input('quote_id'));
-                                })->first(); */
-
                                 if ($hasPhotos) {
 
                                     // Actualizamos la referencia de `photo_id` en `user_quotes` para que no apunte a esta foto
@@ -217,7 +186,6 @@ class BookService
                                         //$driveService->deleteFile($photo->google_drive_id);
                                         $photoToSave['photo_google_id'] = $hasPhotos->photo->google_drive_id;
                                     //-----------------------------------------------------------------------
-
 
                                     // Despachamos el evento que se encarga de subir la nueva foto a Google Drive
                                     //-----------------------------------------------------------------------
@@ -247,9 +215,10 @@ class BookService
                             //--------------------------------------------------------------------------------------
 
                         }
-                    //--------------------------------------------------------------------------------------------------
+                    //-------------------------------------------------------------------------------------------
 
                 }
+
             //------------------------------------------------------------------------------------------------
 
             //Ejecutamos el commit si todo ha salido bien

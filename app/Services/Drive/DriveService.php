@@ -193,14 +193,14 @@ class DriveService
 
         //Upload file to google drive folder
         //---------------------------------------------------------------------------------------------
-            $folderId = self::getFolderIdByName($this->folderName);
-            
+            $folderId = self::getFolderId($this->folderName);
+
             if (!$folderId) {
                 $folderId = self::createFolder($this->folderName);
             }
 
             $name = gettype($file) === 'object' ? $file->getClientOriginalName() : $file;
-            $name = "cita_n°_".$quoteNumber."_photo";
+            $name = "cita_".$quoteNumber."_photo";
             $fileMetadata = new \Google_Service_Drive_DriveFile();
             $fileMetadata->setName($name);
             $fileMetadata->setParents([$folderId]);
